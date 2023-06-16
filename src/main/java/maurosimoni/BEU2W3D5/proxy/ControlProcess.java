@@ -1,9 +1,12 @@
-package maurosimoni.BEU2W3D5;
+package maurosimoni.BEU2W3D5.proxy;
+
+import maurosimoni.BEU2W3D5.interfaces.Observer;
+import maurosimoni.BEU2W3D5.sensors.SmokeSensor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControlProcess implements Observer{
+public class ControlProcess implements Observer {
     private List<SmokeSensor> sensors = new ArrayList<>();
     private ControlCenterProxy proxy;
 

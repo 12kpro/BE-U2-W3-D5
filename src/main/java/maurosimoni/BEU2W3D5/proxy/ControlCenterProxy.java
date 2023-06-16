@@ -1,9 +1,10 @@
-package maurosimoni.BEU2W3D5;
+package maurosimoni.BEU2W3D5.proxy;
 
-import lombok.extern.slf4j.Slf4j;
+import maurosimoni.BEU2W3D5.interfaces.ControlCenter;
+import maurosimoni.BEU2W3D5.sensors.SmokeSensor;
 
 
-public class ControlCenterProxy implements ControlCenter{
+public class ControlCenterProxy implements ControlCenter {
     private ControlCenterImpl controlCenter;
 
     public ControlCenterProxy(ControlCenterImpl controlCenter) {

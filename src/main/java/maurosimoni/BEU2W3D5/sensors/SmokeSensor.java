@@ -1,4 +1,7 @@
-package maurosimoni.BEU2W3D5;
+package maurosimoni.BEU2W3D5.sensors;
+
+import maurosimoni.BEU2W3D5.exceptions.SensorError;
+import maurosimoni.BEU2W3D5.interfaces.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,10 @@ public class SmokeSensor {
         observers.add(observer);
     }
 
-    public void setSmokeLevel(int smokeLevel) {
+    public void setSmokeLevel(int smokeLevel) throws SensorError {
+        if (smokeLevel < 0 || smokeLevel > 10){
+            throw new SensorError("Sensor Fault, detected value is" + smokeLevel + ".Allowed value is in range 0 - 10");
+        }
         this.smokeLevel = smokeLevel;
         notifyObservers();
     }

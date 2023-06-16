@@ -1,16 +1,19 @@
 package maurosimoni.BEU2W3D5;
 
-import org.junit.jupiter.api.BeforeAll;
+import lombok.extern.slf4j.Slf4j;
+import maurosimoni.BEU2W3D5.exceptions.SensorError;
+import maurosimoni.BEU2W3D5.proxy.ControlCenterImpl;
+import maurosimoni.BEU2W3D5.proxy.ControlCenterProxy;
+import maurosimoni.BEU2W3D5.proxy.ControlProcess;
+import maurosimoni.BEU2W3D5.sensors.SmokeSensor;
+import maurosimoni.BEU2W3D5.sensors.factories.SmokeSensorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+@Slf4j
 @SpringBootTest
 class Beu2W3D5ApplicationTests {
 	ControlCenterImpl controlCenter;
@@ -29,14 +32,23 @@ public void starter(){
 
 	@Test
 	void testSmokeLevel() {
-		sensor.setSmokeLevel(1);
+		try{
+			sensor.setSmokeLevel(1);
+		} catch (SensorError e) {
+			log.error(e.getMessage());
+		}
+
 		assertEquals(1, sensor.getSmokeLevel());
 
 	}
 	@Test
 	void testSmokeLevelAlarm() {
 		process.addSensor(sensor);
-		sensor.setSmokeLevel(6);
+		try{
+			sensor.setSmokeLevel(6);
+		} catch (SensorError e) {
+			log.error(e.getMessage());
+		}
 		assertTrue(controlCenter.isAlarmSent());
 	}
 }
