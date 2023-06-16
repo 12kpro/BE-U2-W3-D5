@@ -3,14 +3,14 @@ package maurosimoni.BEU2W3D5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SmokeDetector {
+public class SmokeSensor {
     private List<Observer> observers = new ArrayList<>();
     private int smokeLevel;
     private int id;
     private double latitude;
     private double longitude;
 
-    public SmokeDetector(int id, double latitude, double longitude) {
+    public SmokeSensor(int id, double latitude, double longitude) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;

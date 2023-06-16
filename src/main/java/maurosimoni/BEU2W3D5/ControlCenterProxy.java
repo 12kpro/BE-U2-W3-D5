@@ -1,5 +1,8 @@
 package maurosimoni.BEU2W3D5;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ControlCenterProxy implements ControlCenter{
     private ControlCenterImpl controlCenter;
 
@@ -8,14 +11,13 @@ public class ControlCenterProxy implements ControlCenter{
     }
 
     @Override
-    public void sendAlarm(SmokeDetector detector) {
-        // Send alarm to control center using HTTP
-        String url = "http://host/alarm?idsonda=" + detector.getId() +
-                "&lat=" + detector.getLatitude() +
-                "&lon=" + detector.getLongitude() +
-                "&smokelevel=" + detector.getSmokeLevel();
-        // ...
-        controlCenter.sendAlarm(detector);
+    public void sendAlarm(SmokeSensor sensor) {
+        String url = "http://host/alarm?idsonda=" + sensor.getId() +
+                "&lat=" + sensor.getLatitude() +
+                "&lon=" + sensor.getLongitude() +
+                "&smokelevel=" + sensor.getSmokeLevel();
+        log.error(url);
+        controlCenter.sendAlarm(sensor);
     }
 
 }
