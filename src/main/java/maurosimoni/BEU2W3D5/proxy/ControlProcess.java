@@ -18,6 +18,13 @@ public class ControlProcess implements Observer {
         sensors.add(sensor);
         sensor.attach(this);
     }
+    public void rmSensor(SmokeSensor sensor) {
+        sensors.remove(sensor);
+        sensor.deAttach(this);
+    }
+    public List<SmokeSensor> getSensors() {
+        return sensors;
+    }
 
     @Override
     public void update(SmokeSensor sensor) {

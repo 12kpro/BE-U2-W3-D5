@@ -22,7 +22,9 @@ public class SmokeSensor {
     public void attach(Observer observer) {
         observers.add(observer);
     }
-
+    public void deAttach(Observer observer) {
+        observers.remove(observer);
+    }
     public void setSmokeLevel(int smokeLevel) throws SensorError {
         if (smokeLevel < 0 || smokeLevel > 10){
             throw new SensorError("Sensor Fault, detected value is" + smokeLevel + ".Allowed value is in range 0 - 10");
